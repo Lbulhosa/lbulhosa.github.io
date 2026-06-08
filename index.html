@@ -12,13 +12,13 @@
   /* ---------- THEME SYSTEM ---------- */
   :root, [data-theme="papel"] {
     /* Dark direction: deep green page, beige (former background) as the text/ink color */
-    --bg: #062d1f;
-    --surface: #0C3D2B;
-    --surface-2: #04211A;
+    --bg: #01130d;
+    --surface: #031f15;
+    --surface-2: #01130d;
     --ink: #F4F1EA;
     --muted: rgba(244,241,234,0.62);
     --line: rgba(244,241,234,0.16);
-    --accent: #D26B42;
+    --accent: #8e4242;
     --accent-ink: #FFFFFF;
     --accent-soft: #15502A;
     --radius: 0px;
@@ -133,7 +133,7 @@
   .link-underline:hover { background-size: 100% 1.5px; }
 </style>
 </head>
-<body style="background-color: rgb(6, 45, 31)">
+<body style="background-color: var(--bg)">
 
 <!-- ============ NAV ============ -->
 <header class="fixed top-0 inset-x-0 z-40" style="background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);">
@@ -144,7 +144,7 @@
       <a href="#metodo" class="text-[15px] text-muted hover:text-ink transition-colors">Como trabalhamos</a>
       <a href="#sobre" class="text-[15px] text-muted hover:text-ink transition-colors">Sobre nós</a>
     </div>
-    <a href="#contacto" class="btn btn-dark !py-3 !px-6">Falar connosco</a>
+    <a href="#contacto" class="btn btn-dark !py-3 !px-6">Fale connosco</a>
   </nav>
 </header>
 
@@ -156,10 +156,10 @@
     <div class="relative px-6 md:px-10 max-w-[1240px] mx-auto pt-20 pb-24 md:pt-28 md:pb-32">
       <div class="max-w-[900px]">
         <span class="label text-muted block mb-7 reveal">Transformação digital para PMEs</span>
-        <h1 id="hero-h1" class="display type-xl text-ink mb-7 reveal" style="text-wrap: balance;">Tecnologia que faz sentido para o seu negócio.</h1>
+        <h1 id="hero-h1" class="display type-xl text-ink mb-7 reveal" style="text-wrap: balance;">Tecnologia que faz sentido para a sua PME.</h1>
         <p id="hero-sub" class="txt-lg text-muted max-w-[640px] mb-10 reveal" style="text-wrap: pretty;">Ajudamos pequenas e médias empresas a organizar a informação que já têm e a usar inteligência artificial de forma simples. Sem termos complicados — só resultados que se notam no dia a dia.</p>
         <div class="flex flex-wrap items-center gap-4 reveal">
-          <a href="#contacto" class="btn btn-primary">Falar connosco</a>
+          <a href="#contacto" class="btn btn-primary">Fale connosco</a>
           <a href="#metodo" class="btn btn-outline">Veja como trabalhamos</a>
         </div>
       </div>
@@ -288,8 +288,8 @@
           <h2 class="headline type-lg mb-6" style="text-wrap: balance;">Conte-nos sobre o seu negócio.</h2>
           <p class="txt-lg text-muted mb-8 max-w-[420px]">Sem compromisso e sem custos. Respondemos em 24 horas com os próximos passos — em linguagem simples.</p>
           <div class="space-y-2 text-sm text-muted">
-            <p><a href="mailto:ola@titanforge.pt" class="hover:text-ink transition-colors">ola@titanforge.pt</a></p>
-            <p>+351 200 000 000</p>
+            <p><a href="mailto:geral@titanforge.pt" class="hover:text-ink transition-colors">ola@titanforge.pt</a></p>
+            <p>+351 917 867 323</p>
           </div>
         </div>
 
