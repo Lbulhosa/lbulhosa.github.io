@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="papel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titan Forge — Transformação digital para PMEs</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Bricolage+Grotesque:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---------- THEME SYSTEM ---------- */
+  :root, [data-theme="papel"] {
+    /* Dark direction: deep green page, beige (former background) as the text/ink color */
+    --bg: #062d1f;
+    --surface: #0C3D2B;
+    --surface-2: #04211A;
+    --ink: #F4F1EA;
+    --muted: rgba(244,241,234,0.62);
+    --line: rgba(244,241,234,0.16);
+    --accent: #D26B42;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #15502A;
+    --radius: 0px;
+    --radius-lg: 0px;
+    --radius-pill: 0px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --display-weight: 600;
+    --display-tracking: -0.03em;
+  }
+  [data-theme="calor"] {
+    --bg: #FBF6EF;
+    --surface: #FFFFFF;
+    --surface-2: #F2EBE0;
+    --ink: #241F1A;
+    --muted: #756A5C;
+    --line: rgba(36,31,26,0.12);
+    --accent: #4F7D5B;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #E7EFE6;
+    --radius: 14px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Instrument Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --display-weight: 600;
+    --display-tracking: -0.02em;
+  }
+  [data-theme="foco"] {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --surface-2: #111113;
+    --ink: #111113;
+    --muted: #5C5C5A;
+    --line: rgba(17,17,19,0.14);
+    --accent: #E0512F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #FBE6DE;
+    --radius: 6px;
+    --radius-lg: 10px;
+    --radius-pill: 6px;
+    --font-display: 'Sora', sans-serif;
+    --font-body: 'Instrument Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --display-weight: 700;
+    --display-tracking: -0.035em;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color .4s ease, color .4s ease;
+  }
+
+  /* ---------- SEMANTIC HELPERS ---------- */
+  .bg-surface { background-color: var(--surface); }
+  .bg-surface-2 { background-color: var(--surface-2); }
+  .text-ink { color: var(--ink); }
+  .text-muted { color: var(--muted); }
+  .text-accent { color: var(--accent); }
+  .border-line { border-color: var(--line); }
+
+  .display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.0; }
+  .headline { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.12; }
+  .wordmark { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; }
+  .label { font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; line-height: 1; }
+
+  .type-xl { font-size: clamp(40px, 7vw, 82px); }
+  .type-lg { font-size: clamp(28px, 4.2vw, 46px); }
+  .type-md { font-size: clamp(21px, 2.4vw, 27px); }
+  .txt-lg { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; padding: 18px 32px; border-radius: var(--radius-pill); transition: transform .2s ease, background-color .25s ease, opacity .2s ease; cursor: pointer; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-dark { background: var(--ink); color: var(--bg); }
+  .btn-outline { border: 1px solid var(--line); color: var(--ink); background: transparent; }
+  .btn-outline:hover { background: var(--surface); }
+
+  .field { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); font-family: var(--font-body); font-size: 16px; padding: 16px 18px; width: 100%; transition: border-color .2s ease, box-shadow .2s ease; }
+  .field::placeholder { color: var(--muted); opacity: .7; }
+  .field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+
+  .card-radius { border-radius: var(--radius-lg); }
+  .pill-radius { border-radius: var(--radius-pill); }
+
+  .section-dark { background: var(--ink); color: var(--bg); }
+  .section-dark .text-muted { color: color-mix(in srgb, var(--bg) 58%, transparent); }
+
+  .dot-grid { background-image: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--ink) 14%, transparent) 1.2px, transparent 0); background-size: 38px 38px; }
+  [data-no-texture="true"] .dot-grid { background-image: none; }
+
+  .ph-stripes { background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--ink) 8%, transparent) 0 2px, transparent 2px 11px); }
+
+  .service-card { position: relative; overflow: hidden; isolation: isolate; transition: background-color .25s ease; }
+  .service-card > :not(.card-media) { position: relative; z-index: 2; }
+  .card-media { position: absolute; inset: 0; z-index: 1; opacity: 0; transform: scale(1.06); transition: opacity .45s ease, transform .6s cubic-bezier(.16,1,.3,1); pointer-events: none; }
+  .service-card:hover .card-media, .service-card:focus-within .card-media { opacity: 1; transform: scale(1); }
+  .card-media-img { position: absolute; inset: 0; background-color: var(--surface-2); background-size: cover; background-position: center; }
+  .card-media-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 28%, transparent) 0%, color-mix(in srgb, var(--bg) 78%, transparent) 55%, color-mix(in srgb, var(--bg) 92%, transparent) 100%); }
+  .card-media-tag { position: absolute; top: 14px; right: 14px; white-space: nowrap; font-size: 11px; color: var(--ink); background: color-mix(in srgb, var(--bg) 72%, transparent); padding: 5px 9px; }
+
+  /* reveal — no-op (kept as a hook; motion disabled for render reliability) */
+  .reveal { opacity: 1; }
+
+  .link-underline { background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 1.5px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .3s ease; padding-bottom: 2px; }
+  .link-underline:hover { background-size: 100% 1.5px; }
+</style>
+</head>
+<body style="background-color: rgb(6, 45, 31)">
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-40" style="background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);">
+  <nav class="flex items-center justify-between h-[72px] px-6 md:px-10 max-w-[1240px] mx-auto">
+    <a href="#top" class="wordmark text-[22px] text-ink">Titan Forge</a>
+    <div class="hidden md:flex items-center gap-9">
+      <a href="#servicos" class="text-[15px] text-muted hover:text-ink transition-colors">O que fazemos</a>
+      <a href="#metodo" class="text-[15px] text-muted hover:text-ink transition-colors">Como trabalhamos</a>
+      <a href="#sobre" class="text-[15px] text-muted hover:text-ink transition-colors">Sobre nós</a>
+    </div>
+    <a href="#contacto" class="btn btn-dark !py-3 !px-6">Falar connosco</a>
+  </nav>
+</header>
+
+<main id="top" class="pt-[72px]">
+
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 dot-grid opacity-70 pointer-events-none"></div>
+    <div class="relative px-6 md:px-10 max-w-[1240px] mx-auto pt-20 pb-24 md:pt-28 md:pb-32">
+      <div class="max-w-[900px]">
+        <span class="label text-muted block mb-7 reveal">Transformação digital para PMEs</span>
+        <h1 id="hero-h1" class="display type-xl text-ink mb-7 reveal" style="text-wrap: balance;">Tecnologia que faz sentido para o seu negócio.</h1>
+        <p id="hero-sub" class="txt-lg text-muted max-w-[640px] mb-10 reveal" style="text-wrap: pretty;">Ajudamos pequenas e médias empresas a organizar a informação que já têm e a usar inteligência artificial de forma simples. Sem termos complicados — só resultados que se notam no dia a dia.</p>
+        <div class="flex flex-wrap items-center gap-4 reveal">
+          <a href="#contacto" class="btn btn-primary">Falar connosco</a>
+          <a href="#metodo" class="btn btn-outline">Veja como trabalhamos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="servicos" class="px-6 md:px-10 max-w-[1240px] mx-auto pt-6 pb-24">
+    <div class="max-w-[620px] mb-12 reveal">
+      <span class="label text-accent block mb-5">O que fazemos</span>
+      <h2 class="headline type-lg text-ink mb-4">Quatro formas práticas de pôr a tecnologia a trabalhar a seu favor.</h2>
+      <p class="text-muted txt-lg">Sem revoluções. Começamos pelo que já tem e avançamos passo a passo.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-line card-radius overflow-hidden">
+      <article class="service-card p-8 lg:p-9 border-r border-b border-line reveal">
+        <div class="card-media" aria-hidden="true">
+          <div class="card-media-img" style="background-image:url('https://images.unsplash.com/photo-1758640920659-0bb864175983?w=1200&q=80&auto=format&fit=crop')"></div>
+          <div class="card-media-scrim"></div>
+          <span class="label card-media-tag">dados</span>
+        </div>
+        <span class="label text-accent block mb-12">01</span>
+        <h3 class="headline type-md mb-3">Organizamos os seus dados</h3>
+        <p class="text-muted">A sua informação está espalhada por folhas de cálculo, emails e papéis. Juntamos tudo num só sítio, fácil de consultar.</p>
+      </article>
+      <article class="service-card p-8 lg:p-9 border-r border-b border-line reveal">
+        <div class="card-media" aria-hidden="true">
+          <div class="card-media-img" style="background-image:url('https://images.unsplash.com/photo-1720036237217-5b1d3e90ed60?w=1200&q=80&auto=format&fit=crop')"></div>
+          <div class="card-media-scrim"></div>
+          <span class="label card-media-tag">automação</span>
+        </div>
+        <span class="label text-accent block mb-12">02</span>
+        <h3 class="headline type-md mb-3">Automatizamos tarefas repetitivas</h3>
+        <p class="text-muted">Deixe o computador tratar do trabalho manual e ganhe tempo para aquilo que realmente importa.</p>
+      </article>
+      <article class="service-card p-8 lg:p-9 border-r border-b border-line reveal">
+        <div class="card-media" aria-hidden="true">
+          <div class="card-media-img" style="background-image:url('https://images.unsplash.com/photo-1751257983922-a627088d4c21?w=1200&q=80&auto=format&fit=crop')"></div>
+          <div class="card-media-scrim"></div>
+          <span class="label card-media-tag">inteligência artificial</span>
+        </div>
+        <span class="label text-accent block mb-12">03</span>
+        <h3 class="headline type-md mb-3">Mostramos como usar a IA</h3>
+        <p class="text-muted">Explicamos, passo a passo, como a inteligência artificial pode ajudar a sua equipa — sem complicar.</p>
+      </article>
+      <article class="service-card p-8 lg:p-9 border-r border-b border-line reveal">
+        <div class="card-media" aria-hidden="true">
+          <div class="card-media-img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop')"></div>
+          <div class="card-media-scrim"></div>
+          <span class="label card-media-tag">relatórios</span>
+        </div>
+        <span class="label text-accent block mb-12">04</span>
+        <h3 class="headline type-md mb-3">Ajudamos a decidir melhor</h3>
+        <p class="text-muted">Relatórios simples que mostram como vai o negócio, sem precisar de ser especialista.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ METHOD ============ -->
+  <section id="metodo" class="bg-surface-2">
+    <div class="px-6 md:px-10 max-w-[1240px] mx-auto py-24">
+      <div class="max-w-[560px] mb-16 reveal">
+        <span class="label text-accent block mb-5">O nosso método</span>
+        <h2 class="headline type-lg text-ink">Como trabalhamos consigo</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 border-t border-line">
+        <div class="pt-8 pb-10 md:pr-8 border-b md:border-b-0 md:border-r border-line reveal">
+          <span class="label text-accent block mb-6">01 — Conversa</span>
+          <p class="text-ink">Ouvimos os seus desafios, sem compromisso e sem custos.</p>
+        </div>
+        <div class="pt-8 pb-10 md:px-8 border-b md:border-b-0 md:border-r border-line reveal">
+          <span class="label text-accent block mb-6">02 — Plano</span>
+          <p class="text-ink">Propomos passos simples e realistas para o seu negócio.</p>
+        </div>
+        <div class="pt-8 pb-10 md:px-8 border-b md:border-b-0 md:border-r border-line reveal">
+          <span class="label text-accent block mb-6">03 — Mãos à obra</span>
+          <p class="text-ink">Implementamos as soluções consigo, lado a lado.</p>
+        </div>
+        <div class="pt-8 pb-10 md:pl-8 reveal">
+          <span class="label text-accent block mb-6">04 — Acompanhamento</span>
+          <p class="text-ink">Ficamos por perto para garantir que tudo continua a funcionar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REASSURANCE ============ -->
+  <section class="px-6 md:px-10 max-w-[1240px] mx-auto py-24">
+    <div class="grid grid-cols-12 gap-y-10 gap-x-6 items-start border-b border-line pb-16">
+      <div class="col-span-12 lg:col-span-7 reveal">
+        <h2 class="headline type-lg text-ink" style="text-wrap: balance;">Sem jargão. Sem contratos longos. Sem promessas que não cumprimos.</h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pl-8 reveal">
+        <p class="txt-lg text-muted mb-8">Falamos a sua língua e adaptamo-nos ao ritmo da sua empresa. Acreditamos que a tecnologia só vale a pena quando lhe poupa tempo e dores de cabeça.</p>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3 text-ink"><span class="w-1.5 h-1.5 pill-radius" style="background: var(--accent);"></span> Linguagem simples, do início ao fim</li>
+          <li class="flex items-center gap-3 text-ink"><span class="w-1.5 h-1.5 pill-radius" style="background: var(--accent);"></span> Soluções à medida do seu orçamento</li>
+          <li class="flex items-center gap-3 text-ink"><span class="w-1.5 h-1.5 pill-radius" style="background: var(--accent);"></span> Resultados que se notam no dia a dia</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="sobre" class="px-6 md:px-10 max-w-[1240px] mx-auto pb-24">
+    <div class="grid grid-cols-12 gap-y-10 gap-x-6 items-center">
+      <div class="col-span-12 md:col-span-5 reveal">
+        <div class="aspect-[4/5] ph-stripes card-radius border border-line flex items-end p-5">
+          <span class="label text-muted" style="background: var(--bg); padding: 6px 10px;">imagem · equipa / cliente</span>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-6 md:col-start-7 reveal">
+        <span class="label text-accent block mb-5">Sobre nós</span>
+        <h2 class="headline type-lg text-ink mb-6" style="text-wrap: balance;">Acreditamos na tecnologia ao serviço das pessoas.</h2>
+        <p class="txt-lg text-muted mb-5">A Titan Forge nasceu para ajudar quem faz o país acontecer: as pequenas e médias empresas. Sabemos que cada negócio é diferente, por isso ouvimos primeiro e só depois propomos.</p>
+        <p class="txt-lg text-muted">Não trazemos tecnologia pela tecnologia. Trazemos soluções que poupam tempo, reduzem erros e dão tranquilidade a quem decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contacto" class="section-dark">
+    <div class="px-6 md:px-10 max-w-[1240px] mx-auto py-24">
+      <div class="grid grid-cols-12 gap-y-12 gap-x-8">
+        <div class="col-span-12 lg:col-span-5 reveal">
+          <span class="label block mb-5" style="color: var(--accent);">Vamos conversar</span>
+          <h2 class="headline type-lg mb-6" style="text-wrap: balance;">Conte-nos sobre o seu negócio.</h2>
+          <p class="txt-lg text-muted mb-8 max-w-[420px]">Sem compromisso e sem custos. Respondemos em 24 horas com os próximos passos — em linguagem simples.</p>
+          <div class="space-y-2 text-sm text-muted">
+            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="751a191435011c01141b131a0712105b0501">[email&#160;protected]</a></p>
+            <p>+351 200 000 000</p>
+          </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-6 lg:col-start-7 reveal">
+          <form id="contact-form" novalidate class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-1">
+              <label class="label text-muted block mb-2" for="nome">Nome</label>
+              <input class="field" type="text" id="nome" name="nome" placeholder="O seu nome" required>
+            </div>
+            <div class="sm:col-span-1">
+              <label class="label text-muted block mb-2" for="email">Email</label>
+              <input class="field" type="email" id="email" name="email" placeholder="email@empresa.pt" required>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="label text-muted block mb-2" for="empresa">Empresa <span style="text-transform: none; letter-spacing: 0;">(opcional)</span></label>
+              <input class="field" type="text" id="empresa" name="empresa" placeholder="Nome da empresa">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="label text-muted block mb-2" for="mensagem">Como podemos ajudar?</label>
+              <textarea class="field" id="mensagem" name="mensagem" rows="4" placeholder="Conte-nos um pouco sobre o que precisa." required></textarea>
+            </div>
+            <div class="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-4 mt-2">
+              <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+              <p class="text-xs text-muted">Os seus dados ficam connosco. Não enviamos spam.</p>
+            </div>
+          </form>
+          <div id="contact-success" class="hidden card-radius p-8" style="border: 1px solid color-mix(in srgb, var(--bg) 24%, transparent);">
+            <span class="label block mb-3" style="color: var(--accent);">Mensagem enviada</span>
+            <h3 class="headline type-md mb-2">Obrigado! Já recebemos a sua mensagem.</h3>
+            <p class="text-muted">Vamos analisar o seu pedido e responder em breve, normalmente dentro de 24 horas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="px-6 md:px-10 max-w-[1240px] mx-auto py-14">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-line pt-10">
+    <div>
+      <div class="wordmark text-[20px] text-ink mb-3">Titan Forge</div>
+      <p class="text-sm text-muted max-w-[300px]">Transformação digital para pequenas e médias empresas. Tecnologia simples, resultados reais.</p>
+    </div>
+    <div class="flex flex-col md:items-end justify-between gap-6">
+      <div class="flex gap-7">
+        <a href="#" class="label text-muted hover:text-ink transition-colors">Privacidade</a>
+        <a href="#" class="label text-muted hover:text-ink transition-colors">Termos</a>
+        <a href="#" class="label text-muted hover:text-ink transition-colors">LinkedIn</a>
+      </div>
+      <p class="label text-muted">© 2026 Titan Forge</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ PAGE SCRIPTS ============ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Contact form (front-end only)
+  (function () {
+    var form = document.getElementById('contact-form');
+    var success = document.getElementById('contact-success');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var valid = true;
+      ['nome', 'email', 'mensagem'].forEach(function (id) {
+        var f = document.getElementById(id);
+        var ok = f.value.trim() !== '' && (id !== 'email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value));
+        f.style.borderColor = ok ? '' : 'var(--accent)';
+        if (!ok) valid = false;
+      });
+      if (!valid) return;
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+    });
+  })();
+</script>
+
+<!-- ============ TWEAKS ============ -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-controller.jsx"></script>
+</body>
+</html>
