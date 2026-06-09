@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Titan Forge — Transformação digital para PMEs</title>
+<title>Forge.ai — Transformação digital para PMEs</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -289,7 +289,7 @@
           <h2 class="headline type-lg mb-6" style="text-wrap: balance;">Conte-nos sobre o seu negócio.</h2>
           <p class="txt-lg text-muted mb-8 max-w-[420px]">Sem compromisso e sem custos. Respondemos em 24 horas com os próximos passos — em linguagem simples.</p>
           <div class="space-y-2 text-sm text-muted">
-            <p><a href="mailto:geral@titanforge.pt" class="hover:text-ink transition-colors">ola@titanforge.pt</a></p>
+            <p><a href="mailto:geral@forgeai.pt" class="hover:text-ink transition-colors">geral@forgeai.pt</a></p>
             <p>+351 917 867 323</p>
           </div>
         </div>
@@ -337,8 +337,8 @@
     </div>
     <div class="flex flex-col md:items-end justify-between gap-6">
       <div class="flex gap-7">
-        <a href="#" class="label text-muted hover:text-ink transition-colors">Privacidade</a>
-        <a href="#" class="label text-muted hover:text-ink transition-colors">Termos</a>
+        <a href="javascript:void(0)" id="open-privacy" onclick="var m=document.getElementById('privacy-modal');m.style.display='block';document.body.style.overflow='hidden';" class="label text-muted hover:text-ink transition-colors" style="cursor:pointer;">Privacidade</a>
+        <a href="javascript:void(0)" id="open-termos" onclick="var m=document.getElementById('termos-modal');m.style.display='block';document.body.style.overflow='hidden';" class="label text-muted hover:text-ink transition-colors" style="cursor:pointer;">Termos</a>
         <a href="#" class="label text-muted hover:text-ink transition-colors">LinkedIn</a>
       </div>
       <p class="label text-muted">© 2026 FORGE.ai</p>
@@ -346,8 +346,73 @@
   </div>
 </footer>
 
+<!-- ============ PRIVACY MODAL ============ -->
+<div id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title" style="display:none; position:fixed; inset:0; z-index:9999; overflow-y:auto;">
+  <!-- Backdrop -->
+  <div id="privacy-backdrop" onclick="document.getElementById('privacy-modal').style.display='none';document.body.style.overflow='';" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); cursor:pointer;"></div>
+  <!-- Panel -->
+  <div style="position:relative; z-index:1; margin:5vh auto; max-width:640px; width:calc(100% - 2rem); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:2.5rem;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;">
+      <h2 id="privacy-modal-title" class="headline" style="font-size:1.5rem; color:var(--ink);">Política de Privacidade</h2>
+      <button id="close-privacy" aria-label="Fechar" onclick="document.getElementById('privacy-modal').style.display='none';document.body.style.overflow='';" style="background:none; border:none; cursor:pointer; color:var(--muted); font-size:1.5rem; line-height:1; padding:4px;">&times;</button>
+    </div>
+    <div style="color:var(--muted); line-height:1.7; font-size:15px;">
+      <p style="margin-bottom:1rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p style="margin-bottom:1rem;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p style="margin-bottom:1rem;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <p style="margin-bottom:1rem;">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TERMOS MODAL ============ -->
+<div id="termos-modal" role="dialog" aria-modal="true" aria-labelledby="termos-modal-title" style="display:none; position:fixed; inset:0; z-index:9999; overflow-y:auto;">
+  <!-- Backdrop -->
+  <div onclick="document.getElementById('termos-modal').style.display='none';document.body.style.overflow='';" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); cursor:pointer;"></div>
+  <!-- Panel -->
+  <div style="position:relative; z-index:1; margin:5vh auto; max-width:640px; width:calc(100% - 2rem); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:2.5rem;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;">
+      <h2 id="termos-modal-title" class="headline" style="font-size:1.5rem; color:var(--ink);">Termos e Condições</h2>
+      <button aria-label="Fechar" onclick="document.getElementById('termos-modal').style.display='none';document.body.style.overflow='';" style="background:none; border:none; cursor:pointer; color:var(--muted); font-size:1.5rem; line-height:1; padding:4px;">&times;</button>
+    </div>
+    <div style="color:var(--muted); line-height:1.7; font-size:15px;">
+      <p style="margin-bottom:1rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p style="margin-bottom:1rem;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p style="margin-bottom:1rem;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <p style="margin-bottom:1rem;">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ============ PAGE SCRIPTS ============ -->
 <script>
+  // Privacy modal
+  (function () {
+    var modal = document.getElementById('privacy-modal');
+    var backdrop = document.getElementById('privacy-backdrop');
+    var openBtn = document.getElementById('open-privacy');
+    var closeBtn = document.getElementById('close-privacy');
+    if (!modal || !openBtn) return;
+    function openModal(e) {
+      e.preventDefault();
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.style.display === 'block') closeModal();
+    });
+  })();
+
   // Contact form (front-end only)
   (function () {
     var form = document.getElementById('contact-form');
