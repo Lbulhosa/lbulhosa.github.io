@@ -127,12 +127,27 @@
   .card-media-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 28%, transparent) 0%, color-mix(in srgb, var(--bg) 78%, transparent) 55%, color-mix(in srgb, var(--bg) 92%, transparent) 100%); }
   .card-media-tag { position: absolute; top: 14px; right: 14px; white-space: nowrap; font-size: 11px; color: var(--ink); background: color-mix(in srgb, var(--bg) 72%, transparent); padding: 5px 9px; }
 
-  /* reveal — no-op (kept as a hook; motion disabled for render reliability) */
-  .reveal { opacity: 1; }
+  /* reveal — animates only when JS adds .anim-ready (else fully visible) */
+  .reveal { opacity: 1; transform: none; }
+  .anim-ready .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+  }
+  .anim-ready .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .anim-ready .reveal { opacity: 1; transform: none; transition: none; }
+  }
 
   .link-underline { background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 1.5px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .3s ease; padding-bottom: 2px; }
   .link-underline:hover { background-size: 100% 1.5px; }
 </style>
+<script>
+  // Enable reveal animations only when motion is allowed (no-JS stays visible)
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('anim-ready');
+  }
+</script>
 </head>
 <body style="background-color: var(--bg)">
 
@@ -456,6 +471,30 @@
       form.classList.add('hidden');
       success.classList.remove('hidden');
     });
+  })();
+
+  // Scroll/load reveal
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('anim-ready')) return;
+    var els = document.querySelectorAll('.reveal');
+    function showAll() { els.forEach(function (el) { el.classList.add('is-visible'); }); }
+    if (!('IntersectionObserver' in window)) { showAll(); return; }
+    try {
+      var io = new IntersectionObserver(function (entries) {
+        var i = 0;
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.transitionDelay = (i++ * 70) + 'ms'; // stagger within a row
+            entry.target.classList.add('is-visible');
+          } else {
+            entry.target.style.transitionDelay = '0ms'; // re-hide promptly when out of view
+            entry.target.classList.remove('is-visible');
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+      els.forEach(function (el) { io.observe(el); });
+    } catch (e) { showAll(); }
   })();
 </script>
 
