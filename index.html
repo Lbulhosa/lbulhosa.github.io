@@ -141,6 +141,9 @@
 
   .link-underline { background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 1.5px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .3s ease; padding-bottom: 2px; }
   .link-underline:hover { background-size: 100% 1.5px; }
+
+  .nav-link { transition: color .2s ease; }
+  .nav-link:hover { color: var(--ink) !important; }
 </style>
 <script>
   // Enable reveal animations only when motion is allowed (no-JS stays visible)
@@ -156,9 +159,9 @@
   <nav class="flex items-center justify-between h-[72px] px-6 md:px-10 max-w-[1240px] mx-auto">
     <a href="#top" class="wordmark text-[22px] text-ink">FORGE .ai</a>
     <div class="hidden md:flex items-center gap-9">
-      <a href="#servicos" class="text-[15px] text-muted hover:text-ink transition-colors">O que fazemos</a>
-      <a href="#metodo" class="text-[15px] text-muted hover:text-ink transition-colors">Como trabalhamos</a>
-      <a href="#sobre" class="text-[15px] text-muted hover:text-ink transition-colors">Sobre nós</a>
+      <a href="#servicos" class="nav-link text-[15px] text-muted">O que fazemos</a>
+      <a href="#metodo" class="nav-link text-[15px] text-muted">Como trabalhamos</a>
+      <a href="#sobre" class="nav-link text-[15px] text-muted">Sobre nós</a>
     </div>
     <a href="#contacto" class="btn btn-dark !py-3 !px-6">Fale connosco</a>
   </nav>
@@ -170,13 +173,83 @@
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 dot-grid opacity-70 pointer-events-none"></div>
     <div class="relative px-6 md:px-10 max-w-[1240px] mx-auto pt-20 pb-24 md:pt-28 md:pb-32">
-      <div class="max-w-[900px]">
-        <span class="label text-muted block mb-7 reveal">Transformação digital para PMEs</span>
-        <h1 id="hero-h1" class="display type-xl text-ink mb-7 reveal" style="text-wrap: balance;">Forge o presente e futuro da sua PME.</h1>
-        <p id="hero-sub" class="txt-lg text-muted max-w-[640px] mb-10 reveal" style="text-wrap: pretty;">Ajudamos pequenas e médias empresas a organizar a informação que já têm e a usar inteligência artificial de forma simples. Sem termos complicados — só resultados que se notam no dia a dia.</p>
-        <div class="flex flex-wrap items-center gap-4 reveal">
-          <a href="#contacto" class="btn btn-primary">Fale connosco</a>
-          <a href="#metodo" class="btn btn-outline">Veja como trabalhamos</a>
+      <div class="relative">
+        <div class="relative max-w-[640px]" style="z-index:1;">
+          <span class="label text-muted block mb-7 reveal">Transformação digital para PMEs</span>
+          <h1 id="hero-h1" class="display type-xl text-ink mb-7 reveal" style="text-wrap: balance;">Forge o presente e futuro da sua PME.</h1>
+          <p id="hero-sub" class="txt-lg text-muted max-w-[640px] mb-10 reveal" style="text-wrap: pretty;">Ajudamos pequenas e médias empresas a organizar a informação que já têm e a usar inteligência artificial de forma simples. Sem termos complicados — só resultados que se notam no dia a dia.</p>
+          <div class="flex flex-wrap items-center gap-4 reveal">
+            <a href="#contacto" class="btn btn-primary">Fale connosco</a>
+            <a href="#metodo" class="btn btn-outline">Veja como trabalhamos</a>
+          </div>
+        </div>
+        <div class="hidden lg:block" aria-hidden="true" style="position:absolute; top:50%; right:-2%; transform:translateY(-50%); z-index:0; opacity:0.5; pointer-events:none;">
+          <div class="reveal">
+          <pre id="hero-ascii" style="font-family:var(--font-mono); font-size:6px; line-height:1; white-space:pre; margin:0; color:var(--ink);">                                                                                                                                                                                                           =#
+                                                                                                                                                                                                           =#
+    ......                                                                                                 ..                                                                                   .-                    ::
++%##############.                                                                                      :#%%%%%%#-                                                                                =%:   =#%%%%#%%#-   *#.
+*#           ##*##                                                                                    *#%%%%%%%%%#                                                                                  :*%*.       -#%*
+*#           #%  #%*                                                                                 +%%%%%%%%%%%%*                                                                                =%*         :  :##.
+*%           #%+==*%%*                                                                               #%%%%%%%%%%%%%                                                                               :%+         *##*  %%
+*%            =++++*#%                                                                               =%%#%%#%##%%%*                                                                               %%           ::   .%=
+*%                  %%                                                                           .+%%#%%%%#%%%#%%##%%#:                                                                      ###: ##    .   .        #* +%%*
+*#   +**********+   %%      =#%##-                                                            :*##*:-%%*%#####%*#%-  =###*:                                                          =%%%#:       ##   -%%%%#%#%*   :%=
+*#   :::::------:   #%    :##%%%%%#                                                       :+%%#-  =#%= ##        +%*    .+%%%+:                                                    :#%%%%%%%.      #*   =#    =#   .%%
+*#    ....::::::    ##    *%%#%%%%%*                                                  :*#%%=    =##-  #%:         :##:      .*%%#+.                                                %%%##%#%%=      :%#   #*   %-  :#*
+*#   #%%%%%%%####   %%    +#%%%%#%###*:                                            +#%%*:     +%%-   +%=            *%*         :*##*=                                         .*#%%%%%%%#%%:        #%: .#. =%  #%=
+*#                  %%     +%%%%%#=  +%%%#:                                   :#%##*        *%%.    =#*              :%%            :#%%%=                                 =%##%*   *#%%%%#.     *%   ##: #- %+ *%.  *%=
+*%  :%%%%###%%%%%: .%%        .:#%:      =*%%#=          :*%%%*:          =%%%#+.         *%#:     :%*                 *%*              =#%%#-       =#%%%*:           +%%%*=        *#*         :     ##*##+#**#+     :
+*%                  #%           *%+         =*%%#-    +%%%####%%*   :+###*-            *%#:       ##                   -%#:                -*###-.*%%##%#%%%*    :*###+:           #%-                ::::::::::
+*#                 .##            =%#            :*%%##%%%%%%%%#%#%%%#=:              *#*         #%.                     *#+                   :*###%%%#%%%%%*#%%#=              :##.                 =%%%%%%%%#
+*#**********+*******%#              #%-              =%%%##%%%%%#%%-                *%*.         *%-                       :%#.                  -%%#%%#%#%#%%#=                 +%*                   :++******+
+ .::.:....:::::::...                 *%*             .%#%%#%%#%%%%%:             .#%*           =%*                          *%*              -**#%%%#%%#%##%##                .#%-                     .+#%%%%-
+                                      -%#             *##%#%%##%%%*     *###*: .#%*            :%*                            -%%:     .+##%%%%+. #%%%%#%%%%%#=               :%%.                        =###
+                                        *#=            -#%%%%%###*#%*=%%%###%%%#*              ##      -%#%#%#%%=              .#%%%%%#*+:        ######%%%%#:               *#*
+                                         =##.             =***=    .#%%%%%%%%%###.            %%:     #%%%#%%%%%%#      :-+#%%%%*+#%=           -%#. .=+*+-                :%%:
+                                          :%%-                     :###%%#%%##%#%+--:::::::::*#=::...+#%##%%%##%##**#%%%#*=:.      -##:        *%*                        =%#.                             :#
+                                            *%*                    :###%%#%%#%#%%***********%%#**####%%##%%%#####%%:                 +%#.    .##:                        #%=                               -%
+.*############*:                             -##.                   *%%%####%%%%%.         =%*       =%%%%%#%%%%%%%*=                 .#%+  +%*                        -##.                      .
+*#           ####                              *#+                  *%%%%%%#%%%%#*        :#*         *%%####%%%%%--#%%%#-              .%%##-                        #%+                        *#    :#%%###%#*.   #%-
+*#           ##.*##                             =%%               :%#.  +###*: *#%%*     :%%        :#%=*#%####* =#%*   =#%%%*:          +%%%:                      -%%:                             *##=       =%%=
+*#           %#   *%*                            .#%=            #%+            *%#%#-   ##       .#%+             :*%#.     =*#%%*:   .##- +%#                    #%+                             :%#            :##
+*%           *#%%%%%%#                             =%#    :===-=%#.              *%==##:*%-      *#*                  =%%=       .=*%%%##     *%+     -=+=:      =#*                              .#*         =%#-  ##
+*%                  ##       =++-                   .%%+###%%%%%#-                *#: +%%=     *%*                      :##*        =##=####+: :##==#%%%#####: :%%:                  .=+=:        ##.          =:   :%=
+*#                  #%     *##%%##*                   #####%%#%%%%*                #%:*%##*  =#%:                         .*%#:   :##-      =%%#*####%%#%%######*                   ###%%%%* *##. #%                 %* =**+
+*#  :%####%%%%%##  .%%    +%%###%%%*=======++++=======##%%%%#%###%#:                #%%= .###%=                              =%#=#%+            :*%%%%#%%%%%##%+=========+++=======#%###%%%%-     %%.  -#%*####%#   :%=
+*#                  %%    *##%%%%%#****************+**%%%%##%%%#%%#:                *##  :%%#%:                               :%%%+              :%%#%##%##%%%%********************#%%%%##%%-     :%+   =#    =%    ##
+*#  .#%%%%%%%%%%%   %%    .##%%###*                   ##%%#%%%%%#%#                +%*%%#%*  =%%.                           =%#+ -##=       .=###%%####%%%##%%%%-                  .%%%%%##*       -#*   #*   #-  :%#
+*#                  %%      .=++=                    =##%%#%##%%#*                =#= *%%.     *%*                        *%%-     :##= -*%%#*-.*%+#%%#%%%%##* =%#.                  .=++-           #%: :#. =%  *%+
+*#   +++++++++++=   ##                              *%= .+##%%%##=               +#**%#=%+       *#+                   -%%*.       :+##%#:    *%*   .=#%%#*=     ##=                             +%.  #%: #: %+ +#:  *#:
+*%   ::::::::::::  .%#                            -%#           :##:            *%%%#.  *%+       .#%=               *##-     -*%%%*-. =##: =%#.                  =##                           .=     ##+%*+#**%*     -
+*#                  %%                           #%=              *%*  +##%%#*:*%%%-     *%:        -##:=#%%%##=  =%%*   :*#%%#=         *%%%:                      #%=                                .========-
+*#                  %%                         :%%                 .#%%%######%%%=        ##.         *%%%###%%%%##::#%%%%=             :%###=                       +%#                               *%%##%%%%%
+:*###%%%%######%%%###:                        *#+                   #%%%%%##%%%%%:         #%.       -%%#%%%#%%%%%##*=                 %%=  =%#                       .##:                             .====+===-
+                                            :%#.                   :#%#%%%%%%%#%%#*********#%#*******####%%%%###%%%                  *%*     .#%-                       +#*                             =*%%%%%*-
+                                           *%*                      ######%%%#%#%+-----:::::=##----::*#%%%#%%%#%#%%%#+-:           =#*:        =#*                       :##:                             +%%#-
+                                          #%-                       *%#%%%%%#%%%%            =%+      #%%%###%%%##. :-*%####+-   :#%-           :%%:                       *%+
+                                        =#*              =*###*=  *%#:#%%%####%+##-           *%=      =###%%##%*          :=#%%%%#*=             *#+=*###*-                -#*
+                                      .%%=             *#%%%%%#%%%#.     -==:    =%%.          *#:        .-=.                +%% .=#%%%##*:       ######%%%%*                ##-                          =%
+  :::......:::.                      =%%.             ######%%#%%%#                *##.         #%                           ##=         :*#%%%#*=%##%%%%%##%#*                *%*                         =#
+*%***********###=                   *%+              .%%%%%##%%#%#%=                 *%#.        ##                        +%*                  -*###%%#%%#####.                :%#.            :*.       ..:         =+
+*#           ##=%%:               :##:               :%%#%%%%##%#%%-                   #%*       :#*                     .#%-                    -%%%%##%%%%%%%=.                 *#=            :#.  .*%%#**#%%%+   **
+*#           ##. =%#-            *%*           .-+##%#*####%%%%%#####+:                  *#*      =%+                   *#*                     .+%%%%#%##%%%%+*%%%#+-             =%*              :##=        :*%*
+*#           ##****%%*        -=#%=        =*%%%#=     -%%###%%%%=  .*###+.               .##=     *%=                :#%-                   :*%%#:*%%###%#%#:      -#%%%#*:        :%#=:          *%*         -.  *%:
+*#            ::::::##.    *#%%%%%*  .+#####-             =*#*=         .*##%+              -##=    *#:              +%#                 .####=       =#%*-              :*%####=   *###%%%:      =#=         *%#+  #%.
+*%                  %%.   +%%#%%%%%%%#*:                                    :*%%%=            =%%:   ##:           .%%=               *%%#+                                    -*#%%%%%%%#%%:     ##           .    :#+
+*#   #%##%%%%%%%%:  ##    *%%#####%#                                            -*###=          +%#. .##.         :%#.           .=#%#*.                                          .%%%%#%%##=###: %#    :. :=   .   .#* =%%+
+*#    .  ..         ##    .%%%%%###                                                 :+###=.       *#*..#*        *#*         .=###+:                                               :%%###%%*      #%.  -%%%#+%%%*   =#-
+*#   -===========   ##      -*%%*:                                                      :*%%#=      *#*=%%%%%%%*#%:       =*%%*:                                                     =*##+:       .%#   -#    *#   :%#
+*#   =++++++++++=   %%                                                                      :*##*=   .#%%%#%%###%#    -*#%#-                                                                       .##:  *#  .%-  =%*
+*#                  %%                                                                          :####*%%%#%%#####%**%##=                                                                             *%=  #. +#  %%-
+*#  :%%%%%%###%%%:  %%                                                                              -%#%%#%%%%%%%%%=                                                                             ##.  *%- #- #= *%:  =%=
+*#                  ##.                                                                              *%%###%%%%%%%*                                                                                    #######%%%*
+*#                  ##                                                                               .#########%%%.                                                                                     ::::::..
++%##################%#                                                                                 =#%%####%=                                                                                      -**####***
+  ...      .:::...                                                                                        ::::                                                                                         -########*
+                                                                                                                                                                                                         =%%#%#:
+                                                                                                                                                                                                           +#=</pre>
+          </div>
         </div>
       </div>
     </div>
@@ -542,6 +615,34 @@
       }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
       els.forEach(function (el) { io.observe(el); });
     } catch (e) { showAll(); }
+  })();
+
+  // Hero ASCII "gif" — twinkle a few glyphs back and forth for subtle movement
+  (function () {
+    var pre = document.getElementById('hero-ascii');
+    if (!pre) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; // honour reduced motion
+    // Each glyph swaps with a similar-density partner, so the shape/weight stays intact
+    var alt = { '#':'%', '%':'#', '*':'+', '+':'*', '=':'-', '-':'=', ':':'.', '.':':' };
+    var base = pre.textContent;
+    var arr = base.split('');
+    var pool = [];                                   // positions eligible to flicker
+    for (var i = 0; i < base.length; i++) { if (alt[base[i]]) pool.push(i); }
+    if (!pool.length) return;
+    var active = [];                                 // positions currently swapped
+    var count = Math.max(1, Math.round(pool.length * 0.1)); // ~5% twinkle at a time
+    function tick() {
+      if (document.hidden) return;                   // skip work when tab not visible
+      for (var k = 0; k < active.length; k++) { arr[active[k]] = base[active[k]]; }
+      active.length = 0;
+      for (var j = 0; j < count; j++) {
+        var p = pool[(Math.random() * pool.length) | 0];
+        arr[p] = alt[base[p]];
+        active.push(p);
+      }
+      pre.textContent = arr.join('');
+    }
+    setInterval(tick, 130);                          // ~7–8 frames/sec
   })();
 </script>
 
