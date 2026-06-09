@@ -338,7 +338,7 @@
     <div class="flex flex-col md:items-end justify-between gap-6">
       <div class="flex gap-7">
         <a href="javascript:void(0)" id="open-privacy" onclick="var m=document.getElementById('privacy-modal');m.style.display='block';document.body.style.overflow='hidden';" class="label text-muted hover:text-ink transition-colors" style="cursor:pointer;">Privacidade</a>
-        <a href="javascript:void(0)" id="open-termos" onclick="var m=document.getElementById('termos-modal');m.style.display='block';document.body.style.overflow='hidden';" class="label text-muted hover:text-ink transition-colors" style="cursor:pointer;">Termos</a>
+        <a href="javascript:void(0)" id="open-termos" class="label text-muted hover:text-ink transition-colors" style="cursor:pointer;">Termos</a>
         <a href="#" class="label text-muted hover:text-ink transition-colors">LinkedIn</a>
       </div>
       <p class="label text-muted">© 2026 FORGE.ai</p>
@@ -369,12 +369,12 @@
 <!-- ============ TERMOS MODAL ============ -->
 <div id="termos-modal" role="dialog" aria-modal="true" aria-labelledby="termos-modal-title" style="display:none; position:fixed; inset:0; z-index:9999; overflow-y:auto;">
   <!-- Backdrop -->
-  <div onclick="document.getElementById('termos-modal').style.display='none';document.body.style.overflow='';" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); cursor:pointer;"></div>
+  <div id="termos-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); cursor:pointer;"></div>
   <!-- Panel -->
   <div style="position:relative; z-index:1; margin:5vh auto; max-width:640px; width:calc(100% - 2rem); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:2.5rem;">
     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;">
       <h2 id="termos-modal-title" class="headline" style="font-size:1.5rem; color:var(--ink);">Termos e Condições</h2>
-      <button aria-label="Fechar" onclick="document.getElementById('termos-modal').style.display='none';document.body.style.overflow='';" style="background:none; border:none; cursor:pointer; color:var(--muted); font-size:1.5rem; line-height:1; padding:4px;">&times;</button>
+      <button id="close-termos" aria-label="Fechar" style="background:none; border:none; cursor:pointer; color:var(--muted); font-size:1.5rem; line-height:1; padding:4px;">&times;</button>
     </div>
     <div style="color:var(--muted); line-height:1.7; font-size:15px;">
       <p style="margin-bottom:1rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -388,6 +388,31 @@
 
 <!-- ============ PAGE SCRIPTS ============ -->
 <script>
+  // Termos modal
+  (function () {
+    var modal = document.getElementById('termos-modal');
+    var backdrop = document.getElementById('termos-backdrop');
+    var openBtn = document.getElementById('open-termos');
+    var closeBtn = document.getElementById('close-termos');
+    if (!modal || !openBtn) return;
+    function openModal(e) {
+      e.preventDefault();
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.style.display === 'block') closeModal();
+    });
+  })();
+
   // Privacy modal
   (function () {
     var modal = document.getElementById('privacy-modal');
