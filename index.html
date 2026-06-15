@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Bricolage+Grotesque:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Bricolage+Grotesque:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Sora:wght@600;700;800&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ---------- THEME SYSTEM ---------- */
   :root, [data-theme="papel"] {
@@ -24,7 +24,7 @@
     --radius: 0px;
     --radius-lg: 0px;
     --radius-pill: 0px;
-    --font-display: 'Space Grotesk', sans-serif;
+    --font-display: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
     --display-weight: 600;
@@ -157,7 +157,9 @@
 <!-- ============ NAV ============ -->
 <header class="fixed top-0 inset-x-0 z-40" style="background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);">
   <nav class="flex items-center justify-between h-[72px] px-6 md:px-10 max-w-[1240px] mx-auto">
-    <a href="#top" class="wordmark text-[22px] text-ink">FORGE .ai</a>
+    <a href="#top" class="flex items-center">
+      <img src="Design/Forge-02.svg" alt="Forge" class="h-[32px] w-auto">
+    </a>
     <div class="hidden md:flex items-center gap-9">
       <a href="#servicos" class="nav-link text-[15px] text-muted">O que fazemos</a>
       <a href="#metodo" class="nav-link text-[15px] text-muted">Como trabalhamos</a>
