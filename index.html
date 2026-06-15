@@ -69,13 +69,22 @@
     --display-tracking: -0.035em;
   }
 
-  html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
     background-color: var(--bg);
     color: var(--ink);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     transition: background-color .4s ease, color .4s ease;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  h1, h2, h3, h4, p, span, a, li, label {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   /* ---------- SEMANTIC HELPERS ---------- */
@@ -89,8 +98,8 @@
   .display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.0; }
   .headline { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.12; }
   .wordmark { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; }
-  .label { font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; font-size: 24px; line-height: 1; }
-  .label_lg { font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; font-size: 14px; line-height: 1; }
+  .label { font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; font-size: clamp(11px, 2.5vw, 24px); line-height: 1.3; }
+  .label_lg { font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; font-size: clamp(10px, 2vw, 14px); line-height: 1.3; }
 
   .type-xl { font-size: clamp(40px, 7vw, 82px); }
   .type-lg { font-size: clamp(28px, 4.2vw, 46px); }
@@ -144,6 +153,56 @@
 
   .nav-link { transition: color .2s ease; }
   .nav-link:hover { color: var(--ink) !important; }
+
+  /* ---------- MOBILE MENU ---------- */
+  .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 28px; height: 28px; background: none; border: none; cursor: pointer; padding: 0; }
+  .hamburger span { display: block; width: 100%; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
+  .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  #mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 39;
+    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 1.5rem 1.5rem 2rem;
+    flex-direction: column;
+    gap: 0;
+  }
+  #mobile-menu.is-open { display: flex; }
+  #mobile-menu a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+    transition: color .2s ease;
+    text-decoration: none;
+  }
+  #mobile-menu a:hover { color: var(--ink); }
+  #mobile-menu .mobile-cta {
+    margin-top: 1.25rem;
+    background: var(--ink);
+    color: var(--bg);
+    text-align: center;
+    padding: 1rem;
+    border-bottom: none;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+  }
+  @media (min-width: 768px) {
+    .hamburger { display: none; }
+    #mobile-menu { display: none !important; }
+  }
 </style>
 <script>
   // Enable reveal animations only when motion is allowed (no-JS stays visible)
@@ -165,9 +224,20 @@
       <a href="#metodo" class="nav-link text-[15px] text-muted">Como trabalhamos</a>
       <a href="#sobre" class="nav-link text-[15px] text-muted">Sobre nós</a>
     </div>
-    <a href="#contacto" class="btn btn-dark !py-3 !px-6">Fale connosco</a>
+    <a href="#contacto" class="btn btn-dark !py-3 !px-6 hidden md:inline-flex">Fale connosco</a>
+    <button class="hamburger md:hidden" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 </header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div id="mobile-menu" role="dialog" aria-label="Navegação móvel">
+  <a href="#servicos" class="mobile-nav-link">O que fazemos</a>
+  <a href="#metodo" class="mobile-nav-link">Como trabalhamos</a>
+  <a href="#sobre" class="mobile-nav-link">Sobre nós</a>
+  <a href="#contacto" class="mobile-cta">Fale connosco</a>
+</div>
 
 <main id="top" class="pt-[72px]">
 
@@ -426,7 +496,7 @@
       <p class="text-sm text-muted max-w-[300px]">Transformação digital para pequenas e médias empresas. Tecnologia simples, resultados reais.</p>
     </div>
     <div class="flex flex-col md:items-end justify-between gap-6">
-      <div class="flex gap-7">
+      <div class="flex flex-wrap gap-x-7 gap-y-3">
         <a href="javascript:void(0)" id="open-privacy" onclick="var m=document.getElementById('privacy-modal');m.style.display='block';document.body.style.overflow='hidden';" class="label text-muted hover:text-ink transition-colors" style="cursor:pointer;">Privacidade</a>
         <a href="javascript:void(0)" id="open-termos" class="label text-muted hover:text-ink transition-colors" style="cursor:pointer;">Termos</a>
         <a href="#" class="label text-muted hover:text-ink transition-colors">LinkedIn</a>
@@ -525,6 +595,31 @@
 
 <!-- ============ PAGE SCRIPTS ============ -->
 <script>
+  // Mobile menu toggle
+  (function () {
+    var btn = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+
   // Termos modal
   (function () {
     var modal = document.getElementById('termos-modal');
