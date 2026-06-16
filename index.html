@@ -8,202 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Bricolage+Grotesque:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=Sora:wght@600;700;800&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-  /* ---------- THEME SYSTEM ---------- */
-  :root, [data-theme="papel"] {
-    /* Dark direction: deep green page, beige (former background) as the text/ink color */
-    --bg: #01130d;
-    --surface: #031f15;
-    --surface-2: #01130d;
-    --ink: #F4F1EA;
-    --muted: rgba(244,241,234,0.62);
-    --line: rgba(244,241,234,0.16);
-    --accent: #8e4242;
-    --accent-ink: #FFFFFF;
-    --accent-soft: #15502A;
-    --radius: 0px;
-    --radius-lg: 0px;
-    --radius-pill: 0px;
-    --font-display: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --display-weight: 600;
-    --display-tracking: -0.03em;
-  }
-  [data-theme="calor"] {
-    --bg: #FBF6EF;
-    --surface: #FFFFFF;
-    --surface-2: #F2EBE0;
-    --ink: #241F1A;
-    --muted: #756A5C;
-    --line: rgba(36,31,26,0.12);
-    --accent: #4F7D5B;
-    --accent-ink: #FFFFFF;
-    --accent-soft: #E7EFE6;
-    --radius: 14px;
-    --radius-lg: 24px;
-    --radius-pill: 999px;
-    --font-display: 'Bricolage Grotesque', sans-serif;
-    --font-body: 'Instrument Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --display-weight: 600;
-    --display-tracking: -0.02em;
-  }
-  [data-theme="foco"] {
-    --bg: #FAFAF7;
-    --surface: #FFFFFF;
-    --surface-2: #111113;
-    --ink: #111113;
-    --muted: #5C5C5A;
-    --line: rgba(17,17,19,0.14);
-    --accent: #E0512F;
-    --accent-ink: #FFFFFF;
-    --accent-soft: #FBE6DE;
-    --radius: 6px;
-    --radius-lg: 10px;
-    --radius-pill: 6px;
-    --font-display: 'Sora', sans-serif;
-    --font-body: 'Instrument Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --display-weight: 700;
-    --display-tracking: -0.035em;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; overflow-x: hidden; }
-  body {
-    background-color: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-    transition: background-color .4s ease, color .4s ease;
-    overflow-x: hidden;
-    max-width: 100%;
-  }
-
-  h1, h2, h3, h4, p, span, a, li, label {
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-
-  /* ---------- SEMANTIC HELPERS ---------- */
-  .bg-surface { background-color: var(--surface); }
-  .bg-surface-2 { background-color: var(--surface-2); }
-  .text-ink { color: var(--ink); }
-  .text-muted { color: var(--muted); }
-  .text-accent { color: var(--accent); }
-  .border-line { border-color: var(--line); }
-
-  .display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.0; }
-  .headline { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.12; }
-  .wordmark { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; }
-  .label { font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; font-size: clamp(11px, 2.5vw, 24px); line-height: 1.3; }
-  .label_lg { font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; font-size: clamp(10px, 2vw, 14px); line-height: 1.3; }
-
-  .type-xl { font-size: clamp(40px, 7vw, 82px); }
-  .type-lg { font-size: clamp(28px, 4.2vw, 46px); }
-  .type-md { font-size: clamp(21px, 2.4vw, 27px); }
-  .txt-lg { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; }
-
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; padding: 18px 32px; border-radius: var(--radius-pill); transition: transform .2s ease, background-color .25s ease, opacity .2s ease; cursor: pointer; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-primary { background: var(--accent); color: var(--accent-ink); }
-  .btn-dark { background: var(--ink); color: var(--bg); }
-  .btn-outline { border: 1px solid var(--line); color: var(--ink); background: transparent; }
-  .btn-outline:hover { background: var(--surface); }
-
-  .field { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); font-family: var(--font-body); font-size: 16px; padding: 16px 18px; width: 100%; transition: border-color .2s ease, box-shadow .2s ease; }
-  .field::placeholder { color: var(--muted); opacity: .7; }
-  .field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
-
-  .card-radius { border-radius: var(--radius-lg); }
-  .pill-radius { border-radius: var(--radius-pill); }
-
-  .section-dark { background: var(--ink); color: var(--bg); }
-  .section-dark .text-muted { color: color-mix(in srgb, var(--bg) 58%, transparent); }
-
-  .dot-grid { background-image: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--ink) 14%, transparent) 1.2px, transparent 0); background-size: 38px 38px; }
-  [data-no-texture="true"] .dot-grid { background-image: none; }
-
-  .ph-stripes { background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--ink) 8%, transparent) 0 2px, transparent 2px 11px); }
-
-  .service-card { position: relative; overflow: hidden; isolation: isolate; transition: background-color .25s ease; }
-  .service-card > :not(.card-media) { position: relative; z-index: 2; }
-  .card-media { position: absolute; inset: 0; z-index: 1; opacity: 0; transform: scale(1.06); transition: opacity .45s ease, transform .6s cubic-bezier(.16,1,.3,1); pointer-events: none; }
-  .service-card:hover .card-media, .service-card:focus-within .card-media { opacity: 1; transform: scale(1); }
-  .card-media-img { position: absolute; inset: 0; background-color: var(--surface-2); background-size: cover; background-position: center; }
-  .card-media-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 28%, transparent) 0%, color-mix(in srgb, var(--bg) 78%, transparent) 55%, color-mix(in srgb, var(--bg) 92%, transparent) 100%); }
-  .card-media-tag { position: absolute; top: 14px; right: 14px; white-space: nowrap; font-size: 11px; color: var(--ink); background: color-mix(in srgb, var(--bg) 72%, transparent); padding: 5px 9px; }
-
-  /* reveal — animates only when JS adds .anim-ready (else fully visible) */
-  .reveal { opacity: 1; transform: none; }
-  .anim-ready .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
-  }
-  .anim-ready .reveal.is-visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .anim-ready .reveal { opacity: 1; transform: none; transition: none; }
-  }
-
-  .link-underline { background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 1.5px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .3s ease; padding-bottom: 2px; }
-  .link-underline:hover { background-size: 100% 1.5px; }
-
-  .nav-link { transition: color .2s ease; }
-  .nav-link:hover { color: var(--ink) !important; }
-
-  /* ---------- MOBILE MENU ---------- */
-  .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 28px; height: 28px; background: none; border: none; cursor: pointer; padding: 0; }
-  .hamburger span { display: block; width: 100%; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
-  .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.is-open span:nth-child(2) { opacity: 0; }
-  .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  #mobile-menu {
-    display: none;
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 39;
-    background: color-mix(in srgb, var(--bg) 96%, transparent);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-    padding: 1.5rem 1.5rem 2rem;
-    flex-direction: column;
-    gap: 0;
-  }
-  #mobile-menu.is-open { display: flex; }
-  #mobile-menu a {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--line);
-    transition: color .2s ease;
-    text-decoration: none;
-  }
-  #mobile-menu a:hover { color: var(--ink); }
-  #mobile-menu .mobile-cta {
-    margin-top: 1.25rem;
-    background: var(--ink);
-    color: var(--bg);
-    text-align: center;
-    padding: 1rem;
-    border-bottom: none;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-  }
-  @media (min-width: 768px) {
-    .hamburger { display: none; }
-    #mobile-menu { display: none !important; }
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 <script>
   // Enable reveal animations only when motion is allowed (no-JS stays visible)
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -215,16 +20,16 @@
 
 <!-- ============ NAV ============ -->
 <header class="fixed top-0 inset-x-0 z-40" style="background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);">
-  <nav class="flex items-center justify-between h-[72px] px-6 md:px-10 max-w-[1240px] mx-auto">
-    <a href="#top" class="flex items-center">
-      <img src="Design/Forge-02.svg" alt="Forge" class="h-[32px] w-auto">
+  <nav class="flex items-center justify-between gap-4 h-[72px] px-6 md:px-10 max-w-[1240px] mx-auto">
+    <a href="#top" class="flex items-center min-w-0">
+      <img src="Design/Forge-02.svg" alt="Forge" class="h-[28px] sm:h-[32px] w-auto max-w-[120px] sm:max-w-none">
     </a>
     <div class="hidden md:flex items-center gap-9">
       <a href="#servicos" class="nav-link text-[15px] text-muted">O que fazemos</a>
       <a href="#metodo" class="nav-link text-[15px] text-muted">Como trabalhamos</a>
       <a href="#sobre" class="nav-link text-[15px] text-muted">Sobre nós</a>
     </div>
-    <a href="#contacto" class="btn btn-dark !py-3 !px-6 hidden md:inline-flex">Fale connosco</a>
+    <a href="#contacto" class="btn btn-primary !py-3 !px-6 hidden md:inline-flex">Fale connosco</a>
     <button class="hamburger md:hidden" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
     </button>
@@ -236,7 +41,7 @@
   <a href="#servicos" class="mobile-nav-link">O que fazemos</a>
   <a href="#metodo" class="mobile-nav-link">Como trabalhamos</a>
   <a href="#sobre" class="mobile-nav-link">Sobre nós</a>
-  <a href="#contacto" class="mobile-cta">Fale connosco</a>
+  <a href="#contacto" class="mobile-cta btn btn-primary">Fale connosco</a>
 </div>
 
 <main id="top" class="pt-[72px]">
@@ -248,8 +53,8 @@
       <div class="relative">
         <div class="relative max-w-[640px]" style="z-index:1;">
           <span class="label text-muted block mb-7 reveal">Transformação digital para PMEs</span>
-          <h1 id="hero-h1" class="display type-xl text-ink mb-7 reveal" style="text-wrap: balance;">Forge o presente e futuro da sua PME.</h1>
-          <p id="hero-sub" class="txt-lg text-muted max-w-[640px] mb-10 reveal" style="text-wrap: pretty;">Ajudamos pequenas e médias empresas a organizar a informação que já têm e a usar inteligência artificial de forma simples. Sem termos complicados — só resultados que se notam no dia a dia.</p>
+          <h1 id="hero-h1" class="display type-xl text-ink mb-7 reveal" style="text-wrap: balance;">Forge o presente e futuro da sua PME</h1>
+          <p id="hero-sub" class="txt-lg text-muted max-w-[640px] mb-10 reveal" style="text-wrap: pretty;">Ajudamos pequenas e médias empresas a organizar a informação que já têm e a usar inteligência artificial de forma simples. Sem termos complicados.</p>
           <div class="flex flex-wrap items-center gap-4 reveal">
             <a href="#contacto" class="btn btn-primary">Fale connosco</a>
             <a href="#metodo" class="btn btn-outline">Veja como trabalhamos</a>
@@ -257,70 +62,7 @@
         </div>
         <div class="hidden lg:block" aria-hidden="true" style="position:absolute; top:50%; right:-2%; transform:translateY(-50%); z-index:0; opacity:0.5; pointer-events:none;">
           <div class="reveal">
-          <pre id="hero-ascii" style="font-family:var(--font-mono); font-size:6px; line-height:1; white-space:pre; margin:0; color:var(--ink);">                                                                                                                                                                                                           =#
-                                                                                                                                                                                                           =#
-    ......                                                                                                 ..                                                                                   .-                    ::
-+%##############.                                                                                      :#%%%%%%#-                                                                                =%:   =#%%%%#%%#-   *#.
-*#           ##*##                                                                                    *#%%%%%%%%%#                                                                                  :*%*.       -#%*
-*#           #%  #%*                                                                                 +%%%%%%%%%%%%*                                                                                =%*         :  :##.
-*%           #%+==*%%*                                                                               #%%%%%%%%%%%%%                                                                               :%+         *##*  %%
-*%            =++++*#%                                                                               =%%#%%#%##%%%*                                                                               %%           ::   .%=
-*%                  %%                                                                           .+%%#%%%%#%%%#%%##%%#:                                                                      ###: ##    .   .        #* +%%*
-*#   +**********+   %%      =#%##-                                                            :*##*:-%%*%#####%*#%-  =###*:                                                          =%%%#:       ##   -%%%%#%#%*   :%=
-*#   :::::------:   #%    :##%%%%%#                                                       :+%%#-  =#%= ##        +%*    .+%%%+:                                                    :#%%%%%%%.      #*   =#    =#   .%%
-*#    ....::::::    ##    *%%#%%%%%*                                                  :*#%%=    =##-  #%:         :##:      .*%%#+.                                                %%%##%#%%=      :%#   #*   %-  :#*
-*#   #%%%%%%%####   %%    +#%%%%#%###*:                                            +#%%*:     +%%-   +%=            *%*         :*##*=                                         .*#%%%%%%%#%%:        #%: .#. =%  #%=
-*#                  %%     +%%%%%#=  +%%%#:                                   :#%##*        *%%.    =#*              :%%            :#%%%=                                 =%##%*   *#%%%%#.     *%   ##: #- %+ *%.  *%=
-*%  :%%%%###%%%%%: .%%        .:#%:      =*%%#=          :*%%%*:          =%%%#+.         *%#:     :%*                 *%*              =#%%#-       =#%%%*:           +%%%*=        *#*         :     ##*##+#**#+     :
-*%                  #%           *%+         =*%%#-    +%%%####%%*   :+###*-            *%#:       ##                   -%#:                -*###-.*%%##%#%%%*    :*###+:           #%-                ::::::::::
-*#                 .##            =%#            :*%%##%%%%%%%%#%#%%%#=:              *#*         #%.                     *#+                   :*###%%%#%%%%%*#%%#=              :##.                 =%%%%%%%%#
-*#**********+*******%#              #%-              =%%%##%%%%%#%%-                *%*.         *%-                       :%#.                  -%%#%%#%#%#%%#=                 +%*                   :++******+
- .::.:....:::::::...                 *%*             .%#%%#%%#%%%%%:             .#%*           =%*                          *%*              -**#%%%#%%#%##%##                .#%-                     .+#%%%%-
-                                      -%#             *##%#%%##%%%*     *###*: .#%*            :%*                            -%%:     .+##%%%%+. #%%%%#%%%%%#=               :%%.                        =###
-                                        *#=            -#%%%%%###*#%*=%%%###%%%#*              ##      -%#%#%#%%=              .#%%%%%#*+:        ######%%%%#:               *#*
-                                         =##.             =***=    .#%%%%%%%%%###.            %%:     #%%%#%%%%%%#      :-+#%%%%*+#%=           -%#. .=+*+-                :%%:
-                                          :%%-                     :###%%#%%##%#%+--:::::::::*#=::...+#%##%%%##%##**#%%%#*=:.      -##:        *%*                        =%#.                             :#
-                                            *%*                    :###%%#%%#%#%%***********%%#**####%%##%%%#####%%:                 +%#.    .##:                        #%=                               -%
-.*############*:                             -##.                   *%%%####%%%%%.         =%*       =%%%%%#%%%%%%%*=                 .#%+  +%*                        -##.                      .
-*#           ####                              *#+                  *%%%%%%#%%%%#*        :#*         *%%####%%%%%--#%%%#-              .%%##-                        #%+                        *#    :#%%###%#*.   #%-
-*#           ##.*##                             =%%               :%#.  +###*: *#%%*     :%%        :#%=*#%####* =#%*   =#%%%*:          +%%%:                      -%%:                             *##=       =%%=
-*#           %#   *%*                            .#%=            #%+            *%#%#-   ##       .#%+             :*%#.     =*#%%*:   .##- +%#                    #%+                             :%#            :##
-*%           *#%%%%%%#                             =%#    :===-=%#.              *%==##:*%-      *#*                  =%%=       .=*%%%##     *%+     -=+=:      =#*                              .#*         =%#-  ##
-*%                  ##       =++-                   .%%+###%%%%%#-                *#: +%%=     *%*                      :##*        =##=####+: :##==#%%%#####: :%%:                  .=+=:        ##.          =:   :%=
-*#                  #%     *##%%##*                   #####%%#%%%%*                #%:*%##*  =#%:                         .*%#:   :##-      =%%#*####%%#%%######*                   ###%%%%* *##. #%                 %* =**+
-*#  :%####%%%%%##  .%%    +%%###%%%*=======++++=======##%%%%#%###%#:                #%%= .###%=                              =%#=#%+            :*%%%%#%%%%%##%+=========+++=======#%###%%%%-     %%.  -#%*####%#   :%=
-*#                  %%    *##%%%%%#****************+**%%%%##%%%#%%#:                *##  :%%#%:                               :%%%+              :%%#%##%##%%%%********************#%%%%##%%-     :%+   =#    =%    ##
-*#  .#%%%%%%%%%%%   %%    .##%%###*                   ##%%#%%%%%#%#                +%*%%#%*  =%%.                           =%#+ -##=       .=###%%####%%%##%%%%-                  .%%%%%##*       -#*   #*   #-  :%#
-*#                  %%      .=++=                    =##%%#%##%%#*                =#= *%%.     *%*                        *%%-     :##= -*%%#*-.*%+#%%#%%%%##* =%#.                  .=++-           #%: :#. =%  *%+
-*#   +++++++++++=   ##                              *%= .+##%%%##=               +#**%#=%+       *#+                   -%%*.       :+##%#:    *%*   .=#%%#*=     ##=                             +%.  #%: #: %+ +#:  *#:
-*%   ::::::::::::  .%#                            -%#           :##:            *%%%#.  *%+       .#%=               *##-     -*%%%*-. =##: =%#.                  =##                           .=     ##+%*+#**%*     -
-*#                  %%                           #%=              *%*  +##%%#*:*%%%-     *%:        -##:=#%%%##=  =%%*   :*#%%#=         *%%%:                      #%=                                .========-
-*#                  %%                         :%%                 .#%%%######%%%=        ##.         *%%%###%%%%##::#%%%%=             :%###=                       +%#                               *%%##%%%%%
-:*###%%%%######%%%###:                        *#+                   #%%%%%##%%%%%:         #%.       -%%#%%%#%%%%%##*=                 %%=  =%#                       .##:                             .====+===-
-                                            :%#.                   :#%#%%%%%%%#%%#*********#%#*******####%%%%###%%%                  *%*     .#%-                       +#*                             =*%%%%%*-
-                                           *%*                      ######%%%#%#%+-----:::::=##----::*#%%%#%%%#%#%%%#+-:           =#*:        =#*                       :##:                             +%%#-
-                                          #%-                       *%#%%%%%#%%%%            =%+      #%%%###%%%##. :-*%####+-   :#%-           :%%:                       *%+
-                                        =#*              =*###*=  *%#:#%%%####%+##-           *%=      =###%%##%*          :=#%%%%#*=             *#+=*###*-                -#*
-                                      .%%=             *#%%%%%#%%%#.     -==:    =%%.          *#:        .-=.                +%% .=#%%%##*:       ######%%%%*                ##-                          =%
-  :::......:::.                      =%%.             ######%%#%%%#                *##.         #%                           ##=         :*#%%%#*=%##%%%%%##%#*                *%*                         =#
-*%***********###=                   *%+              .%%%%%##%%#%#%=                 *%#.        ##                        +%*                  -*###%%#%%#####.                :%#.            :*.       ..:         =+
-*#           ##=%%:               :##:               :%%#%%%%##%#%%-                   #%*       :#*                     .#%-                    -%%%%##%%%%%%%=.                 *#=            :#.  .*%%#**#%%%+   **
-*#           ##. =%#-            *%*           .-+##%#*####%%%%%#####+:                  *#*      =%+                   *#*                     .+%%%%#%##%%%%+*%%%#+-             =%*              :##=        :*%*
-*#           ##****%%*        -=#%=        =*%%%#=     -%%###%%%%=  .*###+.               .##=     *%=                :#%-                   :*%%#:*%%###%#%#:      -#%%%#*:        :%#=:          *%*         -.  *%:
-*#            ::::::##.    *#%%%%%*  .+#####-             =*#*=         .*##%+              -##=    *#:              +%#                 .####=       =#%*-              :*%####=   *###%%%:      =#=         *%#+  #%.
-*%                  %%.   +%%#%%%%%%%#*:                                    :*%%%=            =%%:   ##:           .%%=               *%%#+                                    -*#%%%%%%%#%%:     ##           .    :#+
-*#   #%##%%%%%%%%:  ##    *%%#####%#                                            -*###=          +%#. .##.         :%#.           .=#%#*.                                          .%%%%#%%##=###: %#    :. :=   .   .#* =%%+
-*#    .  ..         ##    .%%%%%###                                                 :+###=.       *#*..#*        *#*         .=###+:                                               :%%###%%*      #%.  -%%%#+%%%*   =#-
-*#   -===========   ##      -*%%*:                                                      :*%%#=      *#*=%%%%%%%*#%:       =*%%*:                                                     =*##+:       .%#   -#    *#   :%#
-*#   =++++++++++=   %%                                                                      :*##*=   .#%%%#%%###%#    -*#%#-                                                                       .##:  *#  .%-  =%*
-*#                  %%                                                                          :####*%%%#%%#####%**%##=                                                                             *%=  #. +#  %%-
-*#  :%%%%%%###%%%:  %%                                                                              -%#%%#%%%%%%%%%=                                                                             ##.  *%- #- #= *%:  =%=
-*#                  ##.                                                                              *%%###%%%%%%%*                                                                                    #######%%%*
-*#                  ##                                                                               .#########%%%.                                                                                     ::::::..
-+%##################%#                                                                                 =#%%####%=                                                                                      -**####***
-  ...      .:::...                                                                                        ::::                                                                                         -########*
-                                                                                                                                                                                                         =%%#%#:
-                                                                                                                                                                                                           +#=</pre>
+          <pre id="hero-ascii" style="font-family:var(--font-mono); font-size:6px; line-height:1; white-space:pre; margin:0; color:var(--ink);"></pre>
           </div>
         </div>
       </div>
@@ -413,7 +155,7 @@
         <h2 class="headline type-lg text-ink" style="text-wrap: balance;">Objectivos concretos. Problemas reais. Soluções à medida </h2>
       </div>
       <div class="col-span-12 lg:col-span-5 lg:pl-8 reveal">
-        <p class="txt-lg text-muted mb-8">Falamos a sua língua e adaptamo-nos ao ritmo da sua empresa. Acreditamos que a tecnologia só vale a pena quando lhe poupa tempo, facilita processos e traz resultados concretos.</p>
+        <p class="txt-lg text-muted mb-8">Adaptamo-nos ao ritmo da sua empresa. Acreditamos que a tecnologia só vale a pena quando lhe poupa tempo, facilita processos e traz resultados concretos.</p>
         <ul class="space-y-3">
           <li class="flex items-center gap-3 text-ink"><span class="w-1.5 h-1.5 pill-radius" style="background: var(--accent);"></span> Linguagem simples, do início ao fim</li>
           <li class="flex items-center gap-3 text-ink"><span class="w-1.5 h-1.5 pill-radius" style="background: var(--accent);"></span> Soluções à medida do seu orçamento</li>
@@ -594,154 +336,7 @@
 </div>
 
 <!-- ============ PAGE SCRIPTS ============ -->
-<script>
-  // Mobile menu toggle
-  (function () {
-    var btn = document.getElementById('menu-toggle');
-    var menu = document.getElementById('mobile-menu');
-    if (!btn || !menu) return;
-    function closeMenu() {
-      menu.classList.remove('is-open');
-      btn.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-    btn.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      btn.classList.toggle('is-open', open);
-      btn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    menu.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', closeMenu);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMenu();
-    });
-  })();
-
-  // Termos modal
-  (function () {
-    var modal = document.getElementById('termos-modal');
-    var backdrop = document.getElementById('termos-backdrop');
-    var openBtn = document.getElementById('open-termos');
-    var closeBtn = document.getElementById('close-termos');
-    if (!modal || !openBtn) return;
-    function openModal(e) {
-      e.preventDefault();
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    }
-    function closeModal() {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.style.display === 'block') closeModal();
-    });
-  })();
-
-  // Privacy modal
-  (function () {
-    var modal = document.getElementById('privacy-modal');
-    var backdrop = document.getElementById('privacy-backdrop');
-    var openBtn = document.getElementById('open-privacy');
-    var closeBtn = document.getElementById('close-privacy');
-    if (!modal || !openBtn) return;
-    function openModal(e) {
-      e.preventDefault();
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    }
-    function closeModal() {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.style.display === 'block') closeModal();
-    });
-  })();
-
-  // Contact form (front-end only)
-  (function () {
-    var form = document.getElementById('contact-form');
-    var success = document.getElementById('contact-success');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var valid = true;
-      ['nome', 'email', 'mensagem'].forEach(function (id) {
-        var f = document.getElementById(id);
-        var ok = f.value.trim() !== '' && (id !== 'email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value));
-        f.style.borderColor = ok ? '' : 'var(--accent)';
-        if (!ok) valid = false;
-      });
-      if (!valid) return;
-      form.classList.add('hidden');
-      success.classList.remove('hidden');
-    });
-  })();
-
-  // Scroll/load reveal
-  (function () {
-    var root = document.documentElement;
-    if (!root.classList.contains('anim-ready')) return;
-    var els = document.querySelectorAll('.reveal');
-    function showAll() { els.forEach(function (el) { el.classList.add('is-visible'); }); }
-    if (!('IntersectionObserver' in window)) { showAll(); return; }
-    try {
-      var io = new IntersectionObserver(function (entries) {
-        var i = 0;
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.style.transitionDelay = (i++ * 70) + 'ms'; // stagger within a row
-            entry.target.classList.add('is-visible');
-          } else {
-            entry.target.style.transitionDelay = '0ms'; // re-hide promptly when out of view
-            entry.target.classList.remove('is-visible');
-          }
-        });
-      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-      els.forEach(function (el) { io.observe(el); });
-    } catch (e) { showAll(); }
-  })();
-
-  // Hero ASCII "gif" — twinkle a few glyphs back and forth for subtle movement
-  (function () {
-    var pre = document.getElementById('hero-ascii');
-    if (!pre) return;
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; // honour reduced motion
-    // Each glyph swaps with a similar-density partner, so the shape/weight stays intact
-    var alt = { '#':'%', '%':'#', '*':'+', '+':'*', '=':'-', '-':'=', ':':'.', '.':':' };
-    var base = pre.textContent;
-    var arr = base.split('');
-    var pool = [];                                   // positions eligible to flicker
-    for (var i = 0; i < base.length; i++) { if (alt[base[i]]) pool.push(i); }
-    if (!pool.length) return;
-    var active = [];                                 // positions currently swapped
-    var count = Math.max(1, Math.round(pool.length * 0.1)); // ~5% twinkle at a time
-    function tick() {
-      if (document.hidden) return;                   // skip work when tab not visible
-      for (var k = 0; k < active.length; k++) { arr[active[k]] = base[active[k]]; }
-      active.length = 0;
-      for (var j = 0; j < count; j++) {
-        var p = pool[(Math.random() * pool.length) | 0];
-        arr[p] = alt[base[p]];
-        active.push(p);
-      }
-      pre.textContent = arr.join('');
-    }
-    setInterval(tick, 130);                          // ~7–8 frames/sec
-  })();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
